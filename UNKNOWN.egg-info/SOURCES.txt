@@ -1,0 +1,10 @@
+setup.py
+UNKNOWN.egg-info/PKG-INFO
+UNKNOWN.egg-info/SOURCES.txt
+UNKNOWN.egg-info/dependency_links.txt
+UNKNOWN.egg-info/top_level.txt
+cython_build/bezier.c
+cython_build/data_structures.c
+cython_build/rasterize.c
+cython_build/rotation.c
+cython_build/triangulation.c
