@@ -104,7 +104,7 @@ class LightManager:
         z_label = tk.Label(self.parent_frame, text="Light Z")
         z_slider = tk.Scale(
             self.parent_frame,
-            from_=-10,
+            from_=-5,
             to=10,
             resolution=0.1,
             orient=tk.HORIZONTAL,

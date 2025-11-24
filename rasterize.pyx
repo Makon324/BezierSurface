@@ -138,7 +138,7 @@ Point light_pos, bint normal_enabled, object normal_tex_array, double[:, :] z_bu
     cdef double I_L_g = <double>I_L[1]
     cdef double I_L_b = <double>I_L[2]
 
-    cdef Point V = Point(0, 0, 1)
+    cdef Point V = Point(0, 0, -1)
 
     cdef Point pos = Point()
     cdef Point N = Point()
