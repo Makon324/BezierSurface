@@ -100,80 +100,19 @@ cdef Point bezier_derivative_v(double[:, :, :] control_points, double u, double 
 @cython.wraparound(False)
 cdef Point compute_normal(Point pu, Point pv):
     """Compute the normal vector from the cross product of partial derivatives pu and pv."""
-    # Normalize pu
-    cdef double norm_u = sqrt(pu.x * pu.x + pu.y * pu.y + pu.z * pu.z)
-    if norm_u > 1e-10:
-        pu.x /= norm_u
-        pu.y /= norm_u
-        pu.z /= norm_u
-    else:
-        pu.x = 1.0
-        pu.y = 0.0
-        pu.z = 0.0  # Default to (1, 0, 0)
-
-    # Normalize pv
-    cdef double norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
-    if norm_v > 1e-10:
-        pv.x /= norm_v
-        pv.y /= norm_v
-        pv.z /= norm_v
-    else:
-        pv.x = 0.0
-        pv.y = 1.0
-        pv.z = 0.0  # Default to (0, 1, 0)
-
-    # Orthonormalize pv with respect to pu (subtract projection)
-    cdef double dot = pu.x * pv.x + pu.y * pv.y + pu.z * pv.z
-    pv.x -= dot * pu.x
-    pv.y -= dot * pu.y
-    pv.z -= dot * pu.z
-
-    # Normalize pv again after projection subtraction
-    norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
-    if norm_v > 1e-10:
-        pv.x /= norm_v
-        pv.y /= norm_v
-        pv.z /= norm_v
-    else:
-        # If pv was parallel to pu, choose an orthogonal vector
-        # For simplicity, compute a perpendicular vector to pu
-        if abs(pu.x) > abs(pu.y):
-            pv.x = -pu.y
-            pv.y = pu.x
-            pv.z = 0.0
-        else:
-            pv.x = 0.0
-            pv.y = -pu.z
-            pv.z = pu.y
-        # Normalize the new pv
-        norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
-        if norm_v > 1e-10:
-            pv.x /= norm_v
-            pv.y /= norm_v
-            pv.z /= norm_v
-        else:
-            # Extreme degenerate case, fallback
-            pv.x = 0.0
-            pv.y = 1.0
-            pv.z = 0.0
-
-    # Now compute the cross product
     cdef double cx = pv.y * pu.z - pv.z * pu.y
     cdef double cy = pv.z * pu.x - pv.x * pu.z
     cdef double cz = pv.x * pu.y - pv.y * pu.x
 
-    # Since pu and pv are orthonormal, the cross should already be unit length,
-    # but normalize for safety
     cdef double norm = sqrt(cx * cx + cy * cy + cz * cz)
     if norm > 1e-10:
         cx /= norm
         cy /= norm
         cz /= norm
     else:
-        # Handle degenerate case
         cx = 0.0
         cy = 0.0
-        cz = 1.0  # Default to (0,0,1)
+        cz = 1.0  # Default to (0,0,1) in degenerate cases
 
     return Point(cx, cy, cz)
 

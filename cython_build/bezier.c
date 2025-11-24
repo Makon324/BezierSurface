@@ -17598,9 +17598,6 @@ static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_bezier_derivati
 */
 
 static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_compute_normal(struct __pyx_obj_15data_structures_Point *__pyx_v_pu, struct __pyx_obj_15data_structures_Point *__pyx_v_pv) {
-  double __pyx_v_norm_u;
-  double __pyx_v_norm_v;
-  double __pyx_v_dot;
   double __pyx_v_cx;
   double __pyx_v_cy;
   double __pyx_v_cz;
@@ -17608,512 +17605,28 @@ static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_compute_normal(
   struct __pyx_obj_15data_structures_Point *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  double __pyx_t_2;
-  double __pyx_t_3;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   PyObject *__pyx_t_6 = NULL;
-  PyObject *__pyx_t_7 = NULL;
-  PyObject *__pyx_t_8 = NULL;
-  size_t __pyx_t_9;
+  size_t __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("compute_normal", 0);
 
-  /* "bezier.pyx":104
+  /* "bezier.pyx":103
+ * cdef Point compute_normal(Point pu, Point pv):
  *     """Compute the normal vector from the cross product of partial derivatives pu and pv."""
- *     # Normalize pu
- *     cdef double norm_u = sqrt(pu.x * pu.x + pu.y * pu.y + pu.z * pu.z)             # <<<<<<<<<<<<<<
- *     if norm_u > 1e-10:
- *         pu.x /= norm_u
-*/
-  __pyx_v_norm_u = sqrt((((__pyx_v_pu->x * __pyx_v_pu->x) + (__pyx_v_pu->y * __pyx_v_pu->y)) + (__pyx_v_pu->z * __pyx_v_pu->z)));
-
-  /* "bezier.pyx":105
- *     # Normalize pu
- *     cdef double norm_u = sqrt(pu.x * pu.x + pu.y * pu.y + pu.z * pu.z)
- *     if norm_u > 1e-10:             # <<<<<<<<<<<<<<
- *         pu.x /= norm_u
- *         pu.y /= norm_u
-*/
-  __pyx_t_1 = (__pyx_v_norm_u > 1e-10);
-  if (__pyx_t_1) {
-
-    /* "bezier.pyx":106
- *     cdef double norm_u = sqrt(pu.x * pu.x + pu.y * pu.y + pu.z * pu.z)
- *     if norm_u > 1e-10:
- *         pu.x /= norm_u             # <<<<<<<<<<<<<<
- *         pu.y /= norm_u
- *         pu.z /= norm_u
-*/
-    if (unlikely(__pyx_v_norm_u == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 106, __pyx_L1_error)
-    }
-    __pyx_v_pu->x = (__pyx_v_pu->x / __pyx_v_norm_u);
-
-    /* "bezier.pyx":107
- *     if norm_u > 1e-10:
- *         pu.x /= norm_u
- *         pu.y /= norm_u             # <<<<<<<<<<<<<<
- *         pu.z /= norm_u
- *     else:
-*/
-    if (unlikely(__pyx_v_norm_u == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 107, __pyx_L1_error)
-    }
-    __pyx_v_pu->y = (__pyx_v_pu->y / __pyx_v_norm_u);
-
-    /* "bezier.pyx":108
- *         pu.x /= norm_u
- *         pu.y /= norm_u
- *         pu.z /= norm_u             # <<<<<<<<<<<<<<
- *     else:
- *         pu.x = 1.0
-*/
-    if (unlikely(__pyx_v_norm_u == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 108, __pyx_L1_error)
-    }
-    __pyx_v_pu->z = (__pyx_v_pu->z / __pyx_v_norm_u);
-
-    /* "bezier.pyx":105
- *     # Normalize pu
- *     cdef double norm_u = sqrt(pu.x * pu.x + pu.y * pu.y + pu.z * pu.z)
- *     if norm_u > 1e-10:             # <<<<<<<<<<<<<<
- *         pu.x /= norm_u
- *         pu.y /= norm_u
-*/
-    goto __pyx_L3;
-  }
-
-  /* "bezier.pyx":110
- *         pu.z /= norm_u
- *     else:
- *         pu.x = 1.0             # <<<<<<<<<<<<<<
- *         pu.y = 0.0
- *         pu.z = 0.0  # Default to (1, 0, 0)
-*/
-  /*else*/ {
-    __pyx_v_pu->x = 1.0;
-
-    /* "bezier.pyx":111
- *     else:
- *         pu.x = 1.0
- *         pu.y = 0.0             # <<<<<<<<<<<<<<
- *         pu.z = 0.0  # Default to (1, 0, 0)
- * 
-*/
-    __pyx_v_pu->y = 0.0;
-
-    /* "bezier.pyx":112
- *         pu.x = 1.0
- *         pu.y = 0.0
- *         pu.z = 0.0  # Default to (1, 0, 0)             # <<<<<<<<<<<<<<
- * 
- *     # Normalize pv
-*/
-    __pyx_v_pu->z = 0.0;
-  }
-  __pyx_L3:;
-
-  /* "bezier.pyx":115
- * 
- *     # Normalize pv
- *     cdef double norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)             # <<<<<<<<<<<<<<
- *     if norm_v > 1e-10:
- *         pv.x /= norm_v
-*/
-  __pyx_v_norm_v = sqrt((((__pyx_v_pv->x * __pyx_v_pv->x) + (__pyx_v_pv->y * __pyx_v_pv->y)) + (__pyx_v_pv->z * __pyx_v_pv->z)));
-
-  /* "bezier.pyx":116
- *     # Normalize pv
- *     cdef double norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *     if norm_v > 1e-10:             # <<<<<<<<<<<<<<
- *         pv.x /= norm_v
- *         pv.y /= norm_v
-*/
-  __pyx_t_1 = (__pyx_v_norm_v > 1e-10);
-  if (__pyx_t_1) {
-
-    /* "bezier.pyx":117
- *     cdef double norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *     if norm_v > 1e-10:
- *         pv.x /= norm_v             # <<<<<<<<<<<<<<
- *         pv.y /= norm_v
- *         pv.z /= norm_v
-*/
-    if (unlikely(__pyx_v_norm_v == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 117, __pyx_L1_error)
-    }
-    __pyx_v_pv->x = (__pyx_v_pv->x / __pyx_v_norm_v);
-
-    /* "bezier.pyx":118
- *     if norm_v > 1e-10:
- *         pv.x /= norm_v
- *         pv.y /= norm_v             # <<<<<<<<<<<<<<
- *         pv.z /= norm_v
- *     else:
-*/
-    if (unlikely(__pyx_v_norm_v == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 118, __pyx_L1_error)
-    }
-    __pyx_v_pv->y = (__pyx_v_pv->y / __pyx_v_norm_v);
-
-    /* "bezier.pyx":119
- *         pv.x /= norm_v
- *         pv.y /= norm_v
- *         pv.z /= norm_v             # <<<<<<<<<<<<<<
- *     else:
- *         pv.x = 0.0
-*/
-    if (unlikely(__pyx_v_norm_v == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 119, __pyx_L1_error)
-    }
-    __pyx_v_pv->z = (__pyx_v_pv->z / __pyx_v_norm_v);
-
-    /* "bezier.pyx":116
- *     # Normalize pv
- *     cdef double norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *     if norm_v > 1e-10:             # <<<<<<<<<<<<<<
- *         pv.x /= norm_v
- *         pv.y /= norm_v
-*/
-    goto __pyx_L4;
-  }
-
-  /* "bezier.pyx":121
- *         pv.z /= norm_v
- *     else:
- *         pv.x = 0.0             # <<<<<<<<<<<<<<
- *         pv.y = 1.0
- *         pv.z = 0.0  # Default to (0, 1, 0)
-*/
-  /*else*/ {
-    __pyx_v_pv->x = 0.0;
-
-    /* "bezier.pyx":122
- *     else:
- *         pv.x = 0.0
- *         pv.y = 1.0             # <<<<<<<<<<<<<<
- *         pv.z = 0.0  # Default to (0, 1, 0)
- * 
-*/
-    __pyx_v_pv->y = 1.0;
-
-    /* "bezier.pyx":123
- *         pv.x = 0.0
- *         pv.y = 1.0
- *         pv.z = 0.0  # Default to (0, 1, 0)             # <<<<<<<<<<<<<<
- * 
- *     # Orthonormalize pv with respect to pu (subtract projection)
-*/
-    __pyx_v_pv->z = 0.0;
-  }
-  __pyx_L4:;
-
-  /* "bezier.pyx":126
- * 
- *     # Orthonormalize pv with respect to pu (subtract projection)
- *     cdef double dot = pu.x * pv.x + pu.y * pv.y + pu.z * pv.z             # <<<<<<<<<<<<<<
- *     pv.x -= dot * pu.x
- *     pv.y -= dot * pu.y
-*/
-  __pyx_v_dot = (((__pyx_v_pu->x * __pyx_v_pv->x) + (__pyx_v_pu->y * __pyx_v_pv->y)) + (__pyx_v_pu->z * __pyx_v_pv->z));
-
-  /* "bezier.pyx":127
- *     # Orthonormalize pv with respect to pu (subtract projection)
- *     cdef double dot = pu.x * pv.x + pu.y * pv.y + pu.z * pv.z
- *     pv.x -= dot * pu.x             # <<<<<<<<<<<<<<
- *     pv.y -= dot * pu.y
- *     pv.z -= dot * pu.z
-*/
-  __pyx_v_pv->x = (__pyx_v_pv->x - (__pyx_v_dot * __pyx_v_pu->x));
-
-  /* "bezier.pyx":128
- *     cdef double dot = pu.x * pv.x + pu.y * pv.y + pu.z * pv.z
- *     pv.x -= dot * pu.x
- *     pv.y -= dot * pu.y             # <<<<<<<<<<<<<<
- *     pv.z -= dot * pu.z
- * 
-*/
-  __pyx_v_pv->y = (__pyx_v_pv->y - (__pyx_v_dot * __pyx_v_pu->y));
-
-  /* "bezier.pyx":129
- *     pv.x -= dot * pu.x
- *     pv.y -= dot * pu.y
- *     pv.z -= dot * pu.z             # <<<<<<<<<<<<<<
- * 
- *     # Normalize pv again after projection subtraction
-*/
-  __pyx_v_pv->z = (__pyx_v_pv->z - (__pyx_v_dot * __pyx_v_pu->z));
-
-  /* "bezier.pyx":132
- * 
- *     # Normalize pv again after projection subtraction
- *     norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)             # <<<<<<<<<<<<<<
- *     if norm_v > 1e-10:
- *         pv.x /= norm_v
-*/
-  __pyx_v_norm_v = sqrt((((__pyx_v_pv->x * __pyx_v_pv->x) + (__pyx_v_pv->y * __pyx_v_pv->y)) + (__pyx_v_pv->z * __pyx_v_pv->z)));
-
-  /* "bezier.pyx":133
- *     # Normalize pv again after projection subtraction
- *     norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *     if norm_v > 1e-10:             # <<<<<<<<<<<<<<
- *         pv.x /= norm_v
- *         pv.y /= norm_v
-*/
-  __pyx_t_1 = (__pyx_v_norm_v > 1e-10);
-  if (__pyx_t_1) {
-
-    /* "bezier.pyx":134
- *     norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *     if norm_v > 1e-10:
- *         pv.x /= norm_v             # <<<<<<<<<<<<<<
- *         pv.y /= norm_v
- *         pv.z /= norm_v
-*/
-    if (unlikely(__pyx_v_norm_v == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 134, __pyx_L1_error)
-    }
-    __pyx_v_pv->x = (__pyx_v_pv->x / __pyx_v_norm_v);
-
-    /* "bezier.pyx":135
- *     if norm_v > 1e-10:
- *         pv.x /= norm_v
- *         pv.y /= norm_v             # <<<<<<<<<<<<<<
- *         pv.z /= norm_v
- *     else:
-*/
-    if (unlikely(__pyx_v_norm_v == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 135, __pyx_L1_error)
-    }
-    __pyx_v_pv->y = (__pyx_v_pv->y / __pyx_v_norm_v);
-
-    /* "bezier.pyx":136
- *         pv.x /= norm_v
- *         pv.y /= norm_v
- *         pv.z /= norm_v             # <<<<<<<<<<<<<<
- *     else:
- *         # If pv was parallel to pu, choose an orthogonal vector
-*/
-    if (unlikely(__pyx_v_norm_v == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 136, __pyx_L1_error)
-    }
-    __pyx_v_pv->z = (__pyx_v_pv->z / __pyx_v_norm_v);
-
-    /* "bezier.pyx":133
- *     # Normalize pv again after projection subtraction
- *     norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *     if norm_v > 1e-10:             # <<<<<<<<<<<<<<
- *         pv.x /= norm_v
- *         pv.y /= norm_v
-*/
-    goto __pyx_L5;
-  }
-
-  /* "bezier.pyx":140
- *         # If pv was parallel to pu, choose an orthogonal vector
- *         # For simplicity, compute a perpendicular vector to pu
- *         if abs(pu.x) > abs(pu.y):             # <<<<<<<<<<<<<<
- *             pv.x = -pu.y
- *             pv.y = pu.x
-*/
-  /*else*/ {
-    __pyx_t_2 = fabs(__pyx_v_pu->x); 
-    __pyx_t_3 = fabs(__pyx_v_pu->y); 
-    __pyx_t_1 = (__pyx_t_2 > __pyx_t_3);
-    if (__pyx_t_1) {
-
-      /* "bezier.pyx":141
- *         # For simplicity, compute a perpendicular vector to pu
- *         if abs(pu.x) > abs(pu.y):
- *             pv.x = -pu.y             # <<<<<<<<<<<<<<
- *             pv.y = pu.x
- *             pv.z = 0.0
-*/
-      __pyx_v_pv->x = (-__pyx_v_pu->y);
-
-      /* "bezier.pyx":142
- *         if abs(pu.x) > abs(pu.y):
- *             pv.x = -pu.y
- *             pv.y = pu.x             # <<<<<<<<<<<<<<
- *             pv.z = 0.0
- *         else:
-*/
-      __pyx_t_3 = __pyx_v_pu->x;
-      __pyx_v_pv->y = __pyx_t_3;
-
-      /* "bezier.pyx":143
- *             pv.x = -pu.y
- *             pv.y = pu.x
- *             pv.z = 0.0             # <<<<<<<<<<<<<<
- *         else:
- *             pv.x = 0.0
-*/
-      __pyx_v_pv->z = 0.0;
-
-      /* "bezier.pyx":140
- *         # If pv was parallel to pu, choose an orthogonal vector
- *         # For simplicity, compute a perpendicular vector to pu
- *         if abs(pu.x) > abs(pu.y):             # <<<<<<<<<<<<<<
- *             pv.x = -pu.y
- *             pv.y = pu.x
-*/
-      goto __pyx_L6;
-    }
-
-    /* "bezier.pyx":145
- *             pv.z = 0.0
- *         else:
- *             pv.x = 0.0             # <<<<<<<<<<<<<<
- *             pv.y = -pu.z
- *             pv.z = pu.y
-*/
-    /*else*/ {
-      __pyx_v_pv->x = 0.0;
-
-      /* "bezier.pyx":146
- *         else:
- *             pv.x = 0.0
- *             pv.y = -pu.z             # <<<<<<<<<<<<<<
- *             pv.z = pu.y
- *         # Normalize the new pv
-*/
-      __pyx_v_pv->y = (-__pyx_v_pu->z);
-
-      /* "bezier.pyx":147
- *             pv.x = 0.0
- *             pv.y = -pu.z
- *             pv.z = pu.y             # <<<<<<<<<<<<<<
- *         # Normalize the new pv
- *         norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
-*/
-      __pyx_t_3 = __pyx_v_pu->y;
-      __pyx_v_pv->z = __pyx_t_3;
-    }
-    __pyx_L6:;
-
-    /* "bezier.pyx":149
- *             pv.z = pu.y
- *         # Normalize the new pv
- *         norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)             # <<<<<<<<<<<<<<
- *         if norm_v > 1e-10:
- *             pv.x /= norm_v
-*/
-    __pyx_v_norm_v = sqrt((((__pyx_v_pv->x * __pyx_v_pv->x) + (__pyx_v_pv->y * __pyx_v_pv->y)) + (__pyx_v_pv->z * __pyx_v_pv->z)));
-
-    /* "bezier.pyx":150
- *         # Normalize the new pv
- *         norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *         if norm_v > 1e-10:             # <<<<<<<<<<<<<<
- *             pv.x /= norm_v
- *             pv.y /= norm_v
-*/
-    __pyx_t_1 = (__pyx_v_norm_v > 1e-10);
-    if (__pyx_t_1) {
-
-      /* "bezier.pyx":151
- *         norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *         if norm_v > 1e-10:
- *             pv.x /= norm_v             # <<<<<<<<<<<<<<
- *             pv.y /= norm_v
- *             pv.z /= norm_v
-*/
-      if (unlikely(__pyx_v_norm_v == 0)) {
-        PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 151, __pyx_L1_error)
-      }
-      __pyx_v_pv->x = (__pyx_v_pv->x / __pyx_v_norm_v);
-
-      /* "bezier.pyx":152
- *         if norm_v > 1e-10:
- *             pv.x /= norm_v
- *             pv.y /= norm_v             # <<<<<<<<<<<<<<
- *             pv.z /= norm_v
- *         else:
-*/
-      if (unlikely(__pyx_v_norm_v == 0)) {
-        PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 152, __pyx_L1_error)
-      }
-      __pyx_v_pv->y = (__pyx_v_pv->y / __pyx_v_norm_v);
-
-      /* "bezier.pyx":153
- *             pv.x /= norm_v
- *             pv.y /= norm_v
- *             pv.z /= norm_v             # <<<<<<<<<<<<<<
- *         else:
- *             # Extreme degenerate case, fallback
-*/
-      if (unlikely(__pyx_v_norm_v == 0)) {
-        PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 153, __pyx_L1_error)
-      }
-      __pyx_v_pv->z = (__pyx_v_pv->z / __pyx_v_norm_v);
-
-      /* "bezier.pyx":150
- *         # Normalize the new pv
- *         norm_v = sqrt(pv.x * pv.x + pv.y * pv.y + pv.z * pv.z)
- *         if norm_v > 1e-10:             # <<<<<<<<<<<<<<
- *             pv.x /= norm_v
- *             pv.y /= norm_v
-*/
-      goto __pyx_L7;
-    }
-
-    /* "bezier.pyx":156
- *         else:
- *             # Extreme degenerate case, fallback
- *             pv.x = 0.0             # <<<<<<<<<<<<<<
- *             pv.y = 1.0
- *             pv.z = 0.0
-*/
-    /*else*/ {
-      __pyx_v_pv->x = 0.0;
-
-      /* "bezier.pyx":157
- *             # Extreme degenerate case, fallback
- *             pv.x = 0.0
- *             pv.y = 1.0             # <<<<<<<<<<<<<<
- *             pv.z = 0.0
- * 
-*/
-      __pyx_v_pv->y = 1.0;
-
-      /* "bezier.pyx":158
- *             pv.x = 0.0
- *             pv.y = 1.0
- *             pv.z = 0.0             # <<<<<<<<<<<<<<
- * 
- *     # Now compute the cross product
-*/
-      __pyx_v_pv->z = 0.0;
-    }
-    __pyx_L7:;
-  }
-  __pyx_L5:;
-
-  /* "bezier.pyx":161
- * 
- *     # Now compute the cross product
  *     cdef double cx = pv.y * pu.z - pv.z * pu.y             # <<<<<<<<<<<<<<
  *     cdef double cy = pv.z * pu.x - pv.x * pu.z
  *     cdef double cz = pv.x * pu.y - pv.y * pu.x
 */
   __pyx_v_cx = ((__pyx_v_pv->y * __pyx_v_pu->z) - (__pyx_v_pv->z * __pyx_v_pu->y));
 
-  /* "bezier.pyx":162
- *     # Now compute the cross product
+  /* "bezier.pyx":104
+ *     """Compute the normal vector from the cross product of partial derivatives pu and pv."""
  *     cdef double cx = pv.y * pu.z - pv.z * pu.y
  *     cdef double cy = pv.z * pu.x - pv.x * pu.z             # <<<<<<<<<<<<<<
  *     cdef double cz = pv.x * pu.y - pv.y * pu.x
@@ -18121,26 +17634,26 @@ static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_compute_normal(
 */
   __pyx_v_cy = ((__pyx_v_pv->z * __pyx_v_pu->x) - (__pyx_v_pv->x * __pyx_v_pu->z));
 
-  /* "bezier.pyx":163
+  /* "bezier.pyx":105
  *     cdef double cx = pv.y * pu.z - pv.z * pu.y
  *     cdef double cy = pv.z * pu.x - pv.x * pu.z
  *     cdef double cz = pv.x * pu.y - pv.y * pu.x             # <<<<<<<<<<<<<<
  * 
- *     # Since pu and pv are orthonormal, the cross should already be unit length,
+ *     cdef double norm = sqrt(cx * cx + cy * cy + cz * cz)
 */
   __pyx_v_cz = ((__pyx_v_pv->x * __pyx_v_pu->y) - (__pyx_v_pv->y * __pyx_v_pu->x));
 
-  /* "bezier.pyx":167
- *     # Since pu and pv are orthonormal, the cross should already be unit length,
- *     # but normalize for safety
+  /* "bezier.pyx":107
+ *     cdef double cz = pv.x * pu.y - pv.y * pu.x
+ * 
  *     cdef double norm = sqrt(cx * cx + cy * cy + cz * cz)             # <<<<<<<<<<<<<<
  *     if norm > 1e-10:
  *         cx /= norm
 */
   __pyx_v_norm = sqrt((((__pyx_v_cx * __pyx_v_cx) + (__pyx_v_cy * __pyx_v_cy)) + (__pyx_v_cz * __pyx_v_cz)));
 
-  /* "bezier.pyx":168
- *     # but normalize for safety
+  /* "bezier.pyx":108
+ * 
  *     cdef double norm = sqrt(cx * cx + cy * cy + cz * cz)
  *     if norm > 1e-10:             # <<<<<<<<<<<<<<
  *         cx /= norm
@@ -18149,7 +17662,7 @@ static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_compute_normal(
   __pyx_t_1 = (__pyx_v_norm > 1e-10);
   if (__pyx_t_1) {
 
-    /* "bezier.pyx":169
+    /* "bezier.pyx":109
  *     cdef double norm = sqrt(cx * cx + cy * cy + cz * cz)
  *     if norm > 1e-10:
  *         cx /= norm             # <<<<<<<<<<<<<<
@@ -18158,11 +17671,11 @@ static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_compute_normal(
 */
     if (unlikely(__pyx_v_norm == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 169, __pyx_L1_error)
+      __PYX_ERR(0, 109, __pyx_L1_error)
     }
     __pyx_v_cx = (__pyx_v_cx / __pyx_v_norm);
 
-    /* "bezier.pyx":170
+    /* "bezier.pyx":110
  *     if norm > 1e-10:
  *         cx /= norm
  *         cy /= norm             # <<<<<<<<<<<<<<
@@ -18171,91 +17684,91 @@ static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_compute_normal(
 */
     if (unlikely(__pyx_v_norm == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 170, __pyx_L1_error)
+      __PYX_ERR(0, 110, __pyx_L1_error)
     }
     __pyx_v_cy = (__pyx_v_cy / __pyx_v_norm);
 
-    /* "bezier.pyx":171
+    /* "bezier.pyx":111
  *         cx /= norm
  *         cy /= norm
  *         cz /= norm             # <<<<<<<<<<<<<<
  *     else:
- *         # Handle degenerate case
+ *         cx = 0.0
 */
     if (unlikely(__pyx_v_norm == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 171, __pyx_L1_error)
+      __PYX_ERR(0, 111, __pyx_L1_error)
     }
     __pyx_v_cz = (__pyx_v_cz / __pyx_v_norm);
 
-    /* "bezier.pyx":168
- *     # but normalize for safety
+    /* "bezier.pyx":108
+ * 
  *     cdef double norm = sqrt(cx * cx + cy * cy + cz * cz)
  *     if norm > 1e-10:             # <<<<<<<<<<<<<<
  *         cx /= norm
  *         cy /= norm
 */
-    goto __pyx_L8;
+    goto __pyx_L3;
   }
 
-  /* "bezier.pyx":174
+  /* "bezier.pyx":113
+ *         cz /= norm
  *     else:
- *         # Handle degenerate case
  *         cx = 0.0             # <<<<<<<<<<<<<<
  *         cy = 0.0
- *         cz = 1.0  # Default to (0,0,1)
+ *         cz = 1.0  # Default to (0,0,1) in degenerate cases
 */
   /*else*/ {
     __pyx_v_cx = 0.0;
 
-    /* "bezier.pyx":175
- *         # Handle degenerate case
+    /* "bezier.pyx":114
+ *     else:
  *         cx = 0.0
  *         cy = 0.0             # <<<<<<<<<<<<<<
- *         cz = 1.0  # Default to (0,0,1)
+ *         cz = 1.0  # Default to (0,0,1) in degenerate cases
  * 
 */
     __pyx_v_cy = 0.0;
 
-    /* "bezier.pyx":176
+    /* "bezier.pyx":115
  *         cx = 0.0
  *         cy = 0.0
- *         cz = 1.0  # Default to (0,0,1)             # <<<<<<<<<<<<<<
+ *         cz = 1.0  # Default to (0,0,1) in degenerate cases             # <<<<<<<<<<<<<<
  * 
  *     return Point(cx, cy, cz)
 */
     __pyx_v_cz = 1.0;
   }
-  __pyx_L8:;
+  __pyx_L3:;
 
-  /* "bezier.pyx":178
- *         cz = 1.0  # Default to (0,0,1)
+  /* "bezier.pyx":117
+ *         cz = 1.0  # Default to (0,0,1) in degenerate cases
  * 
  *     return Point(cx, cy, cz)             # <<<<<<<<<<<<<<
  * 
  * @cython.boundscheck(False)
 */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_5 = NULL;
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_cx); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_t_3 = NULL;
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_cx); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_cy); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_cz); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_cy); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 178, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_cz); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 178, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = 1;
+  __pyx_t_7 = 1;
   {
-    PyObject *__pyx_callargs[4] = {__pyx_t_5, __pyx_t_6, __pyx_t_7, __pyx_t_8};
-    __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_mstate_global->__pyx_ptype_15data_structures_Point, __pyx_callargs+__pyx_t_9, (4-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    PyObject *__pyx_callargs[4] = {__pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6};
+    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_mstate_global->__pyx_ptype_15data_structures_Point, __pyx_callargs+__pyx_t_7, (4-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
-    __Pyx_GOTREF((PyObject *)__pyx_t_4);
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+    __Pyx_GOTREF((PyObject *)__pyx_t_2);
   }
-  __pyx_r = ((struct __pyx_obj_15data_structures_Point *)__pyx_t_4);
-  __pyx_t_4 = 0;
+  __pyx_r = ((struct __pyx_obj_15data_structures_Point *)__pyx_t_2);
+  __pyx_t_2 = 0;
   goto __pyx_L0;
 
   /* "bezier.pyx":99
@@ -18268,11 +17781,11 @@ static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_compute_normal(
 
   /* function exit code */
   __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_8);
   __Pyx_AddTraceback("bezier.compute_normal", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -18281,7 +17794,7 @@ static struct __pyx_obj_15data_structures_Point *__pyx_f_6bezier_compute_normal(
   return __pyx_r;
 }
 
-/* "bezier.pyx":180
+/* "bezier.pyx":119
  *     return Point(cx, cy, cz)
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -18330,39 +17843,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_control_points,&__pyx_mstate_global->__pyx_n_u_divisions,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 180, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 119, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 180, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 119, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 180, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 119, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "generate_vertices", 0) < (0)) __PYX_ERR(0, 180, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "generate_vertices", 0) < (0)) __PYX_ERR(0, 119, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("generate_vertices", 1, 2, 2, i); __PYX_ERR(0, 180, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("generate_vertices", 1, 2, 2, i); __PYX_ERR(0, 119, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 180, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 119, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 180, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 119, __pyx_L3_error)
     }
-    __pyx_v_control_points = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_control_points.memview)) __PYX_ERR(0, 182, __pyx_L3_error)
-    __pyx_v_divisions = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_divisions == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L3_error)
+    __pyx_v_control_points = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_control_points.memview)) __PYX_ERR(0, 121, __pyx_L3_error)
+    __pyx_v_divisions = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_divisions == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 121, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("generate_vertices", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 180, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("generate_vertices", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 119, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -18414,7 +17927,7 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("generate_vertices", 0);
 
-  /* "bezier.pyx":184
+  /* "bezier.pyx":123
  * def generate_vertices(double[:, :, :] control_points, int divisions):
  *     """Generate a grid of vertices on the Bzier surface with the given number of divisions."""
  *     if divisions < 1:             # <<<<<<<<<<<<<<
@@ -18424,7 +17937,7 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
   __pyx_t_1 = (__pyx_v_divisions < 1);
   if (unlikely(__pyx_t_1)) {
 
-    /* "bezier.pyx":185
+    /* "bezier.pyx":124
  *     """Generate a grid of vertices on the Bzier surface with the given number of divisions."""
  *     if divisions < 1:
  *         raise ValueError("Divisions must be at least 1")             # <<<<<<<<<<<<<<
@@ -18437,14 +17950,14 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
       PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_mstate_global->__pyx_kp_u_Divisions_must_be_at_least_1};
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_ValueError)), __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 185, __pyx_L1_error)
+    __PYX_ERR(0, 124, __pyx_L1_error)
 
-    /* "bezier.pyx":184
+    /* "bezier.pyx":123
  * def generate_vertices(double[:, :, :] control_points, int divisions):
  *     """Generate a grid of vertices on the Bzier surface with the given number of divisions."""
  *     if divisions < 1:             # <<<<<<<<<<<<<<
@@ -18453,19 +17966,19 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
 */
   }
 
-  /* "bezier.pyx":187
+  /* "bezier.pyx":126
  *         raise ValueError("Divisions must be at least 1")
  * 
  *     vertices = []             # <<<<<<<<<<<<<<
  *     cdef double du = 1.0 / divisions
  *     cdef double dv = 1.0 / divisions
 */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_vertices = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "bezier.pyx":188
+  /* "bezier.pyx":127
  * 
  *     vertices = []
  *     cdef double du = 1.0 / divisions             # <<<<<<<<<<<<<<
@@ -18474,11 +17987,11 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
 */
   if (unlikely(__pyx_v_divisions == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 188, __pyx_L1_error)
+    __PYX_ERR(0, 127, __pyx_L1_error)
   }
   __pyx_v_du = (1.0 / ((double)__pyx_v_divisions));
 
-  /* "bezier.pyx":189
+  /* "bezier.pyx":128
  *     vertices = []
  *     cdef double du = 1.0 / divisions
  *     cdef double dv = 1.0 / divisions             # <<<<<<<<<<<<<<
@@ -18487,11 +18000,11 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
 */
   if (unlikely(__pyx_v_divisions == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 189, __pyx_L1_error)
+    __PYX_ERR(0, 128, __pyx_L1_error)
   }
   __pyx_v_dv = (1.0 / ((double)__pyx_v_divisions));
 
-  /* "bezier.pyx":193
+  /* "bezier.pyx":132
  *     cdef double u, v
  *     cdef Vertex vertex
  *     for i in range(divisions + 1):             # <<<<<<<<<<<<<<
@@ -18503,7 +18016,7 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
   for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
     __pyx_v_i = __pyx_t_7;
 
-    /* "bezier.pyx":194
+    /* "bezier.pyx":133
  *     cdef Vertex vertex
  *     for i in range(divisions + 1):
  *         u = i * du             # <<<<<<<<<<<<<<
@@ -18512,7 +18025,7 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
 */
     __pyx_v_u = (__pyx_v_i * __pyx_v_du);
 
-    /* "bezier.pyx":195
+    /* "bezier.pyx":134
  *     for i in range(divisions + 1):
  *         u = i * du
  *         for j in range(divisions + 1):             # <<<<<<<<<<<<<<
@@ -18524,7 +18037,7 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
     for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
       __pyx_v_j = __pyx_t_10;
 
-      /* "bezier.pyx":196
+      /* "bezier.pyx":135
  *         u = i * du
  *         for j in range(divisions + 1):
  *             v = j * dv             # <<<<<<<<<<<<<<
@@ -18533,7 +18046,7 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
 */
       __pyx_v_v = (__pyx_v_j * __pyx_v_dv);
 
-      /* "bezier.pyx":197
+      /* "bezier.pyx":136
  *         for j in range(divisions + 1):
  *             v = j * dv
  *             vertex = Vertex(u, v)             # <<<<<<<<<<<<<<
@@ -18541,9 +18054,9 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
  *             vertex.Pu_pre = bezier_derivative_u(control_points, u, v)
 */
       __pyx_t_3 = NULL;
-      __pyx_t_11 = PyFloat_FromDouble(__pyx_v_u); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_11 = PyFloat_FromDouble(__pyx_v_u); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 136, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_12 = PyFloat_FromDouble(__pyx_v_v); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_12 = PyFloat_FromDouble(__pyx_v_v); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 136, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __pyx_t_4 = 1;
       {
@@ -18552,20 +18065,20 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
         __Pyx_GOTREF((PyObject *)__pyx_t_2);
       }
       __Pyx_XDECREF_SET(__pyx_v_vertex, ((struct __pyx_obj_15data_structures_Vertex *)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "bezier.pyx":198
+      /* "bezier.pyx":137
  *             v = j * dv
  *             vertex = Vertex(u, v)
  *             vertex.P_pre = bezier_surface_point(control_points, u, v)             # <<<<<<<<<<<<<<
  *             vertex.Pu_pre = bezier_derivative_u(control_points, u, v)
  *             vertex.Pv_pre = bezier_derivative_v(control_points, u, v)
 */
-      __pyx_t_2 = ((PyObject *)__pyx_f_6bezier_bezier_surface_point(__pyx_v_control_points, __pyx_v_u, __pyx_v_v)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
+      __pyx_t_2 = ((PyObject *)__pyx_f_6bezier_bezier_surface_point(__pyx_v_control_points, __pyx_v_u, __pyx_v_v)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __Pyx_GOTREF((PyObject *)__pyx_v_vertex->P_pre);
@@ -18573,14 +18086,14 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
       __pyx_v_vertex->P_pre = ((struct __pyx_obj_15data_structures_Point *)__pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "bezier.pyx":199
+      /* "bezier.pyx":138
  *             vertex = Vertex(u, v)
  *             vertex.P_pre = bezier_surface_point(control_points, u, v)
  *             vertex.Pu_pre = bezier_derivative_u(control_points, u, v)             # <<<<<<<<<<<<<<
  *             vertex.Pv_pre = bezier_derivative_v(control_points, u, v)
  *             vertex.N_pre = compute_normal(vertex.Pu_pre, vertex.Pv_pre)
 */
-      __pyx_t_2 = ((PyObject *)__pyx_f_6bezier_bezier_derivative_u(__pyx_v_control_points, __pyx_v_u, __pyx_v_v)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
+      __pyx_t_2 = ((PyObject *)__pyx_f_6bezier_bezier_derivative_u(__pyx_v_control_points, __pyx_v_u, __pyx_v_v)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __Pyx_GOTREF((PyObject *)__pyx_v_vertex->Pu_pre);
@@ -18588,14 +18101,14 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
       __pyx_v_vertex->Pu_pre = ((struct __pyx_obj_15data_structures_Point *)__pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "bezier.pyx":200
+      /* "bezier.pyx":139
  *             vertex.P_pre = bezier_surface_point(control_points, u, v)
  *             vertex.Pu_pre = bezier_derivative_u(control_points, u, v)
  *             vertex.Pv_pre = bezier_derivative_v(control_points, u, v)             # <<<<<<<<<<<<<<
  *             vertex.N_pre = compute_normal(vertex.Pu_pre, vertex.Pv_pre)
  *             vertices.append(vertex)
 */
-      __pyx_t_2 = ((PyObject *)__pyx_f_6bezier_bezier_derivative_v(__pyx_v_control_points, __pyx_v_u, __pyx_v_v)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_2 = ((PyObject *)__pyx_f_6bezier_bezier_derivative_v(__pyx_v_control_points, __pyx_v_u, __pyx_v_v)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __Pyx_GOTREF((PyObject *)__pyx_v_vertex->Pv_pre);
@@ -18603,7 +18116,7 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
       __pyx_v_vertex->Pv_pre = ((struct __pyx_obj_15data_structures_Point *)__pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "bezier.pyx":201
+      /* "bezier.pyx":140
  *             vertex.Pu_pre = bezier_derivative_u(control_points, u, v)
  *             vertex.Pv_pre = bezier_derivative_v(control_points, u, v)
  *             vertex.N_pre = compute_normal(vertex.Pu_pre, vertex.Pv_pre)             # <<<<<<<<<<<<<<
@@ -18614,7 +18127,7 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
       __Pyx_INCREF(__pyx_t_2);
       __pyx_t_12 = ((PyObject *)__pyx_v_vertex->Pv_pre);
       __Pyx_INCREF(__pyx_t_12);
-      __pyx_t_11 = ((PyObject *)__pyx_f_6bezier_compute_normal(((struct __pyx_obj_15data_structures_Point *)__pyx_t_2), ((struct __pyx_obj_15data_structures_Point *)__pyx_t_12))); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 201, __pyx_L1_error)
+      __pyx_t_11 = ((PyObject *)__pyx_f_6bezier_compute_normal(((struct __pyx_obj_15data_structures_Point *)__pyx_t_2), ((struct __pyx_obj_15data_structures_Point *)__pyx_t_12))); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 140, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
@@ -18624,37 +18137,37 @@ static PyObject *__pyx_pf_6bezier_generate_vertices(CYTHON_UNUSED PyObject *__py
       __pyx_v_vertex->N_pre = ((struct __pyx_obj_15data_structures_Point *)__pyx_t_11);
       __pyx_t_11 = 0;
 
-      /* "bezier.pyx":202
+      /* "bezier.pyx":141
  *             vertex.Pv_pre = bezier_derivative_v(control_points, u, v)
  *             vertex.N_pre = compute_normal(vertex.Pu_pre, vertex.Pv_pre)
  *             vertices.append(vertex)             # <<<<<<<<<<<<<<
  *     return vertices, divisions + 1
 */
-      __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_vertices, ((PyObject *)__pyx_v_vertex)); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 202, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_vertices, ((PyObject *)__pyx_v_vertex)); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 141, __pyx_L1_error)
     }
   }
 
-  /* "bezier.pyx":203
+  /* "bezier.pyx":142
  *             vertex.N_pre = compute_normal(vertex.Pu_pre, vertex.Pv_pre)
  *             vertices.append(vertex)
  *     return vertices, divisions + 1             # <<<<<<<<<<<<<<
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_11 = __Pyx_PyLong_From_long((__pyx_v_divisions + 1)); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyLong_From_long((__pyx_v_divisions + 1)); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_INCREF(__pyx_v_vertices);
   __Pyx_GIVEREF(__pyx_v_vertices);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_v_vertices) != (0)) __PYX_ERR(0, 203, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_v_vertices) != (0)) __PYX_ERR(0, 142, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_11);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_12, 1, __pyx_t_11) != (0)) __PYX_ERR(0, 203, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_12, 1, __pyx_t_11) != (0)) __PYX_ERR(0, 142, __pyx_L1_error);
   __pyx_t_11 = 0;
   __pyx_r = __pyx_t_12;
   __pyx_t_12 = 0;
   goto __pyx_L0;
 
-  /* "bezier.pyx":180
+  /* "bezier.pyx":119
  *     return Point(cx, cy, cz)
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -20557,19 +20070,19 @@ __Pyx_RefNannySetupContext("PyInit_bezier", 0);
 */
   __pyx_v_6bezier_PI = 3.14159265358979323846;
 
-  /* "bezier.pyx":180
+  /* "bezier.pyx":119
  *     return Point(cx, cy, cz)
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * def generate_vertices(double[:, :, :] control_points, int divisions):
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6bezier_1generate_vertices, 0, __pyx_mstate_global->__pyx_n_u_generate_vertices, NULL, __pyx_mstate_global->__pyx_n_u_bezier, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6bezier_1generate_vertices, 0, __pyx_mstate_global->__pyx_n_u_generate_vertices, NULL, __pyx_mstate_global->__pyx_n_u_bezier, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_generate_vertices, __pyx_t_4) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_generate_vertices, __pyx_t_4) < (0)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "bezier.pyx":1
@@ -20808,7 +20321,7 @@ typedef struct {
     unsigned int num_kwonly_args : 1;
     unsigned int nlocals : 4;
     unsigned int flags : 10;
-    unsigned int first_line : 8;
+    unsigned int first_line : 7;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -20825,7 +20338,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 10, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 180};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 10, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 119};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_control_points, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_vertices, __pyx_mstate->__pyx_n_u_du, __pyx_mstate->__pyx_n_u_dv, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_j, __pyx_mstate->__pyx_n_u_u, __pyx_mstate->__pyx_n_u_v, __pyx_mstate->__pyx_n_u_vertex};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_bezier_pyx, __pyx_mstate->__pyx_n_u_generate_vertices, __pyx_mstate->__pyx_kp_b_iso88591_z_1_j_q_T_1_T_1_U_Rq_Bb_E_az_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
