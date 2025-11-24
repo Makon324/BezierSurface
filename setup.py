@@ -1,42 +1,36 @@
+# setup.py
+import os
+from pathlib import Path
 from setuptools import Extension, setup
 from Cython.Build import cythonize
-import numpy as np
-import os
+import numpy as np   # now safe: numpy is guaranteed to be available
 
-# ------------------------------------------------------------------
-# 1. Where to put all generated .c files and build temp files
-# ------------------------------------------------------------------
-CYTHON_BUILD_DIR = "cython_build"  # .c files go here
-os.makedirs(CYTHON_BUILD_DIR, exist_ok=True)
+BASE_DIR = Path(__file__).parent.resolve()
 
-# ------------------------------------------------------------------
-# 2. Where to put the final compiled extensions (.so / .pyd)
-# ------------------------------------------------------------------
-COMPILED_DIR = "compiled"  # <-- this is your new subdir
-os.makedirs(COMPILED_DIR, exist_ok=True)
+CYTHON_BUILD_DIR = BASE_DIR / "cython_build"
+COMPILED_DIR = BASE_DIR / "compiled"
+
+CYTHON_BUILD_DIR.mkdir(exist_ok=True)
+COMPILED_DIR.mkdir(exist_ok=True)
 
 extensions = [
-    Extension(
-        "data_structures",
-        ["data_structures.pyx"],
-        include_dirs=[np.get_include()],
-    ),
-    Extension("bezier", ["bezier.pyx"], include_dirs=[np.get_include()]),
-    Extension("rotation", ["rotation.pyx"], include_dirs=[np.get_include()]),
-    Extension("triangulation", ["triangulation.pyx"], include_dirs=[np.get_include()]),
-    Extension("rasterize", ["rasterize.pyx"], include_dirs=[np.get_include()]),
+    Extension("data_structures", ["data_structures.pyx"], include_dirs=[np.get_include()]),
+    Extension("bezier",          ["bezier.pyx"],          include_dirs=[np.get_include()]),
+    Extension("rotation",        ["rotation.pyx"],        include_dirs=[np.get_include()]),
+    Extension("triangulation",   ["triangulation.pyx"],   include_dirs=[np.get_include()]),
+    Extension("rasterize",       ["rasterize.pyx"],       include_dirs=[np.get_include()]),
 ]
 
 setup(
     ext_modules=cythonize(
         extensions,
-        build_dir=CYTHON_BUILD_DIR,  # keeps all .c files out of source tree
-        language_level="3",
+        build_dir=str(CYTHON_BUILD_DIR),
+        language_level=3,
     ),
     options={
         "build_ext": {
-            "inplace": False,  # CRUCIAL: don't drop .so in current dir
-            "build_lib": COMPILED_DIR,  # put final extensions here
+            "build_lib": str(COMPILED_DIR),
+            "inplace": False,
         }
     },
 )

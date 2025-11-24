@@ -1,0 +1,13 @@
+pyproject.toml
+setup.py
+C:/Users/maciek/Desktop/BezierSurfaces/BezierSurface/cython_build/bezier.c
+C:/Users/maciek/Desktop/BezierSurfaces/BezierSurface/cython_build/data_structures.c
+C:/Users/maciek/Desktop/BezierSurfaces/BezierSurface/cython_build/rasterize.c
+C:/Users/maciek/Desktop/BezierSurfaces/BezierSurface/cython_build/rotation.c
+C:/Users/maciek/Desktop/BezierSurfaces/BezierSurface/cython_build/triangulation.c
+bezier_surface_renderer.egg-info/PKG-INFO
+bezier_surface_renderer.egg-info/SOURCES.txt
+bezier_surface_renderer.egg-info/dependency_links.txt
+bezier_surface_renderer.egg-info/requires.txt
+bezier_surface_renderer.egg-info/top_level.txt
+compiled/__init__.py
