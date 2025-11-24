@@ -58,6 +58,7 @@ def render_to_image(
     BLUE = (0, 0, 255)
 
     img_array = np.full((height, width, 3), WHITE, dtype=np.uint8)  # White background
+    z_buffer = np.full((height, width), np.inf, dtype=np.float64)  # New: Depth buffer
 
     offset_x = width / 2.0
     offset_y = height / 2.0
@@ -85,6 +86,7 @@ def render_to_image(
                 light_pos,
                 normal_enabled,
                 normal_tex_array,
+                z_buffer,  # Pass z_buffer
             )
 
     if show_mesh:

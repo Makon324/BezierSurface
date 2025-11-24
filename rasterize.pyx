@@ -24,7 +24,9 @@ cdef void set_pixel(np.ndarray[np.uint8_t, ndim=3] img, int x, int y, int r, int
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def fill_triangle(np.ndarray[np.uint8_t, ndim=3] img_array, Triangle tri, double scale, double offset_x, double offset_y, str color_mode, tuple const_col, object tex_array, double k_d, double k_s, int m, object I_L, Point light_pos, bint normal_enabled, object normal_tex_array):
+def fill_triangle(np.ndarray[np.uint8_t, ndim=3] img_array, Triangle tri, double scale, double offset_x,
+double offset_y, str color_mode, tuple const_col, object tex_array, double k_d, double k_s, int m, object I_L,
+Point light_pos, bint normal_enabled, object normal_tex_array, double[:, :] z_buffer):
     # Project vertices to 2D
     cdef Vertex v0 = tri.vertices[0]
     cdef Vertex v1 = tri.vertices[1]
@@ -65,6 +67,10 @@ def fill_triangle(np.ndarray[np.uint8_t, ndim=3] img_array, Triangle tri, double
     cdef double denom = p0.x * (p1.y - p2.y) + p1.x * (p2.y - p0.y) + p2.x * (p0.y - p1.y)
     if fabs(denom) < 1e-6:
         return
+
+    cdef double z0 = v0.P_post.z
+    cdef double z1 = v1.P_post.z
+    cdef double z2 = v2.P_post.z
 
     cdef int y_start = <int>ceil(p0.y)
     cdef int y_end = <int>floor(p2.y)
@@ -111,6 +117,7 @@ def fill_triangle(np.ndarray[np.uint8_t, ndim=3] img_array, Triangle tri, double
     cdef double uu, vv
     cdef int tx, ty
     cdef double l0, l1, l2
+    cdef double z_pix
     cdef double px, py
 
     cdef bint is_texture = color_mode == "texture" and tex_array is not None
@@ -173,6 +180,15 @@ def fill_triangle(np.ndarray[np.uint8_t, ndim=3] img_array, Triangle tri, double
                 l0 = (p1.x * (p2.y - py) + p2.x * (py - p1.y) + px * (p1.y - p2.y)) / denom
                 l1 = (p2.x * (p0.y - py) + p0.x * (py - p2.y) + px * (p2.y - p0.y)) / denom
                 l2 = (p0.x * (p1.y - py) + p1.x * (py - p0.y) + px * (p0.y - p1.y)) / denom
+
+                # Interpolate z
+                z_pix = l0 * z0 + l1 * z1 + l2 * z2
+
+                # Depth test
+                if z_pix < z_buffer[y, x]:
+                    z_buffer[y, x] = z_pix
+                else:
+                    continue
 
                 # Interpolate position
                 pos.x = l0 * v0.P_post.x + l1 * v1.P_post.x + l2 * v2.P_post.x
