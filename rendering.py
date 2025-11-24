@@ -58,7 +58,7 @@ def render_to_image(
     BLUE = (0, 0, 255)
 
     img_array = np.full((height, width, 3), WHITE, dtype=np.uint8)  # White background
-    z_buffer = np.full((height, width), np.inf, dtype=np.float64)  # New: Depth buffer
+    z_buffer = np.full((height, width), np.inf, dtype=np.float64)  # Depth buffer
 
     offset_x = width / 2.0
     offset_y = height / 2.0

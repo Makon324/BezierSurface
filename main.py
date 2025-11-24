@@ -229,35 +229,12 @@ class BezierApp:
 
 
 if __name__ == "__main__":
-    # Default control points file
     CONTROL_POINTS_FILE = "control_points.txt"
+    CONTROL_POINTS2_FILE = "control_points2.txt"
 
-    if not os.path.exists(CONTROL_POINTS_FILE):
-        with open(CONTROL_POINTS_FILE, "w") as f:
-            # Example points: bounding box approx [-1,1]^3, functional z = x^2 - y^2 or similar
-            points = [
-                [-1, -1, 1],
-                [-0.333, -1, 0.5],
-                [0.333, -1, 0.5],
-                [1, -1, 1],
-                [-1, -0.333, 0.5],
-                [-0.333, -0.333, 0],
-                [0.333, -0.333, 0],
-                [1, -0.333, 0.5],
-                [-1, 0.333, 0.5],
-                [-0.333, 0.333, 0],
-                [0.333, 0.333, 0],
-                [1, 0.333, 0.5],
-                [-1, 1, 1],
-                [-0.333, 1, 0.5],
-                [0.333, 1, 0.5],
-                [1, 1, 1],
-            ]
-            for p in points:
-                f.write(f"{p[0]} {p[1]} {p[2]}\n")
-
-    control_points = load_control_points(CONTROL_POINTS_FILE)
+    control_points1 = load_control_points(CONTROL_POINTS_FILE)
+    control_points2 = load_control_points(CONTROL_POINTS2_FILE)
     root = tk.Tk()
     root.title("Bézier Surface Renderer")
-    app = BezierApp(root, control_points)
+    app = BezierApp(root, control_points1)#, control_points2)  # Pass both
     root.mainloop()

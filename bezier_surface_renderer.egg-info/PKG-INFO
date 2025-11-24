@@ -14,3 +14,12 @@ Requires-Dist: Pillow>=8.0
 Provides-Extra: dev
 Requires-Dist: pytest; extra == "dev"
 Requires-Dist: black; extra == "dev"
+
+\# Setup:
+
+```pip install setuptools Cython numpy```
+
+```pip install . --no-build-isolation```
+
+```python main.py```
+
