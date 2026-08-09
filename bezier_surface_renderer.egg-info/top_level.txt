@@ -1,8 +1,0 @@
-bezier
-build
-compiled
-cython_build
-data_structures
-rasterize
-rotation
-triangulation

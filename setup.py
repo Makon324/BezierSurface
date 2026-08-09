@@ -1,9 +1,8 @@
-# setup.py
-import os
 from pathlib import Path
+
 from setuptools import Extension, setup
 from Cython.Build import cythonize
-import numpy as np   # now safe: numpy is guaranteed to be available
+import numpy as np
 
 BASE_DIR = Path(__file__).parent.resolve()
 
@@ -15,10 +14,10 @@ COMPILED_DIR.mkdir(exist_ok=True)
 
 extensions = [
     Extension("data_structures", ["data_structures.pyx"], include_dirs=[np.get_include()]),
-    Extension("bezier",          ["bezier.pyx"],          include_dirs=[np.get_include()]),
-    Extension("rotation",        ["rotation.pyx"],        include_dirs=[np.get_include()]),
-    Extension("triangulation",   ["triangulation.pyx"],   include_dirs=[np.get_include()]),
-    Extension("rasterize",       ["rasterize.pyx"],       include_dirs=[np.get_include()]),
+    Extension("bezier", ["bezier.pyx"], include_dirs=[np.get_include()]),
+    Extension("rotation", ["rotation.pyx"], include_dirs=[np.get_include()]),
+    Extension("triangulation", ["triangulation.pyx"], include_dirs=[np.get_include()]),
+    Extension("rasterize", ["rasterize.pyx"], include_dirs=[np.get_include()]),
 ]
 
 setup(

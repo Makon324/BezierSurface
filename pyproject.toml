@@ -11,31 +11,27 @@ build-backend = "setuptools.build_meta"
 name = "bezier-surface-renderer"
 version = "0.1.0"
 description = "A Bézier surface renderer application using Cython, NumPy, Pillow, and Tkinter for 3D visualization and lighting effects."
-readme = "README.md"  # Assuming you have or will add a README.md
+readme = "README.md"
 requires-python = ">=3.8"
-authors = [
-    {name = "Your Name", email = "your.email@example.com"},  # Replace with actual author details
-]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",  # Adjust if you have a specific license
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering :: Visualization",
 ]
 dependencies = [
     "numpy>=1.21",
-    "Pillow>=8.0",  # For PIL.Image handling
+    "Pillow>=8.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest",  # For testing, if applicable
-    "black",   # For code formatting
+    "pytest",
+    "black",
 ]
 
 [tool.setuptools]
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["*"]  # Find all packages/modules in the root
-exclude = ["tests*"]  # Exclude tests if present
+include = ["*"]
+exclude = ["tests*"]

@@ -1,0 +1,27 @@
+# Python bytecode and native extension artifacts
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+
+# Packaging and Cython build output
+*.egg-info/
+.eggs/
+build/
+dist/
+cython_build/
+
+# Virtual environments and tool caches
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
